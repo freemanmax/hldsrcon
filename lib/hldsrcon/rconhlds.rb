@@ -20,7 +20,7 @@ class RconHlds
      data.gsub!("\xFF\xFF\xFF\xFFchallenge ", "")
      data.gsub!("\n\x00", "")
      @challenge = data
-     if ( @challenge =~ /rcon\s\d\d\d\d\d\d\d\d\d/ )
+     if ( @challenge =~ /rcon\s\d/ )
        @socket.send "\xFF\xFF\xFF\xFF#{@challenge} #{@pass}", 0
        rcon_paket = @socket.recvfrom(1400)
        if rcon_paket[0] == "\xFF\xFF\xFF\xFFl\x00\x00"
