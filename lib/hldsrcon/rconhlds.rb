@@ -32,4 +32,13 @@ class RconHlds
        end
      end     
   end
+  def rcon_command(command)
+     @command = command
+     if ( @rcon_respons == "Good Rcon" )
+       @socket.send "\xFF\xFF\xFF\xFF#{@challenge} #{@pass} #{@command}", 0
+     else
+       @rcon_respons = "Bad Rcon"
+       return @rcon_respons
+     end
+  end
 end
