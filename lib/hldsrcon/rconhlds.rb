@@ -23,22 +23,19 @@ class RconHlds
      if ( @challenge =~ /rcon\s\d/ )
        @socket.send "\xFF\xFF\xFF\xFF#{@challenge} #{@pass}", 0
        rcon_paket = @socket.recvfrom(1400)
-       if rcon_paket[0] == "\xFF\xFF\xFF\xFFl\x00\x00"
-         @rcon_respons = "Good Rcon" 
-         return @rcon_respons
-       else
-         @rcon_respons = "Bad Rcon"
-         return @rcon_respons
+       if rcon_paket[0] == "\xFF\xFF\xFF\xFFl\x00\x00"  
+         return "Good Rcon"
+       else 
+         return "Bad Rcon"
        end
      end     
   end
   def rcon_command(command)
      @command = command
-     if ( @rcon_respons == "Good Rcon" )
+     if ( rcon_pass == "Good Rcon" )
        @socket.send "\xFF\xFF\xFF\xFF#{@challenge} #{@pass} #{@command}", 0
      else
-       @rcon_respons = "Bad Rcon"
-       return @rcon_respons
+       return "Bad Rcon"
      end
   end
 end
