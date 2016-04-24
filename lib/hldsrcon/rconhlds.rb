@@ -48,7 +48,7 @@ class RconHlds
          @datas << data
          if ( @command_paket[0] == "\xFF\xFF\xFF\xFFl\x00\x00" )
            return @datas
-           @receve_paket = true
+           @receve_paket << true
          end
        end
      else
