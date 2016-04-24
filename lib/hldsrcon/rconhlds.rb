@@ -42,7 +42,7 @@ class RconHlds
          data.gsub!("\xFF\xFF\xFF\xFFl", "")
          data.gsub!("\n\x00", "")
          @datas.push(data)
-         if ( command_paket[0] == "l\x00" )
+         if ( command_paket[0] == "\xFF\xFF\xFF\xFFl\x00\x00" )
            @datas.each do |data|
              data
            end
