@@ -36,7 +36,7 @@ class RconHlds
        @socket.send "\xFF\xFF\xFF\xFF#{@challenge} #{@pass} #{@command}", 0
        @socket.send "\xFF\xFF\xFF\xFF#{@challenge} #{@pass}", 0
        @datas = []
-       until @command == nil do
+       loop do
          command_paket = @socket.recvfrom(1400)
          data = command_paket[0]
          data.gsub!("\xFF\xFF\xFF\xFFl", "")
