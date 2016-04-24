@@ -20,19 +20,22 @@ class RconHlds
      data.gsub!("\xFF\xFF\xFF\xFFchallenge ", "")
      data.gsub!("\n\x00", "")
      @challenge = data
+     @rcon_pass_respons = ""
      if ( @challenge =~ /rcon\s\d/ )
        @socket.send "\xFF\xFF\xFF\xFF#{@challenge} #{@pass}", 0
        rcon_paket = @socket.recvfrom(1400)
-       if rcon_paket[0] == "\xFF\xFF\xFF\xFFl\x00\x00"  
-         return "Good Rcon"
-       else 
-         return "Bad Rcon"
+       if rcon_paket[0] == "\xFF\xFF\xFF\xFFl\x00\x00"
+         @rcon_pass_respons = "Good Rcon"  
+         return @rcon_pass_respons
+       else
+         @rcon_pass_respons = "Bad Rcon"  
+         return @rcon_pass_respons
        end
      end     
   end
   def rcon_command(command)
      @command = command
-     if ( rcon_pass(@pass) == "Good Rcon" )
+     if ( @rcon_pass_respons == "Good Rcon" )
        @socket.send "\xFF\xFF\xFF\xFF#{@challenge} #{@pass} #{@command}", 0
        @socket.send "\xFF\xFF\xFF\xFF#{@challenge} #{@pass}", 0
        @command_paket = ""
