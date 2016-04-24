@@ -56,6 +56,6 @@ class RconHlds
   def rcon_command_respons
     @datas.gsub!("\xFF\xFF\xFF\xFFl", "")
     @datas.gsub!("\x00\x00", "")
-    return @datas
+    @datas
   end
 end
