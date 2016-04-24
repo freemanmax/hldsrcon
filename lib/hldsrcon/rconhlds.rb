@@ -38,7 +38,7 @@ class RconHlds
      if ( @rcon_pass_respons == "Good Rcon" )
        @socket.send "\xFF\xFF\xFF\xFF#{@challenge} #{@pass} #{@command}", 0
        @socket.send "\xFF\xFF\xFF\xFF#{@challenge} #{@pass}", 0
-       @command_paket = nil
+       @command_paket = ""
        @datas = ""
        until ( @command_paket[0] == "" ) do
          @command_paket = @socket.recvfrom(1400)
