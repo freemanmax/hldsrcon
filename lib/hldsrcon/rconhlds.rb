@@ -47,7 +47,7 @@ class RconHlds
          data.gsub!("\x00\x00", "")
          @datas << data
          if ( @command_paket[0] == "\xFF\xFF\xFF\xFFl\x00\x00" )
-           return @datas
+           puts @datas
            @receve_paket = true
          end
        end
