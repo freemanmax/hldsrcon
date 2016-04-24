@@ -1,8 +1,7 @@
 # Hldsrcon
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/hldsrcon`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Hldsrcon gem is Counter-Strike 1.6 Server remote console, the gem use UDP Socket to send and
+receive data or to execute Counter-Strike 1.6 Server command and receive respons from Server.
 
 ## Installation
 
@@ -14,26 +13,41 @@ gem 'hldsrcon'
 
 And then execute:
 
-    $ bundle
+```
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install hldsrcon
+```
+$ gem install hldsrcon
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+To use this game you have first to installet the gem.
+Use this example, create new ruby file rcon.rb and put this in it:
 
-## Development
+```ruby
+require 'hldsrcon'
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+@conn = RconHlds.new("192.168.0.1", 27015, 29015)
+@conn.rcon_pass('ctx')
+rcon = @conn.rcon_command('sv_restart 1')
+puts rcon
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/hldsrcon.
-
+Note 'ctx' is the Counter-Strike 1.6 Server rcon_password.
+After this run the rcon.rb file in terminal, make sure that your terminal directory is where the file is located
+and after this run ruby rcon.rb. If everything go well you should get respons from server like this:
+```
+L 04/24/2016 - 10:04:21: Server cvar "sv_restart" = "1" 
+```
+If you get:
+```
+Bad Rcon 
+```
+Your Counter-Strike 1.6 Server rcon_password is wrong.
 
 ## License
 
