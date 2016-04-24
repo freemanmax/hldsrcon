@@ -50,7 +50,7 @@ class RconHlds
        end
        @datas.gsub!("\xFF\xFF\xFF\xFFl", "")
        @datas.gsub!("\x00\x00", "")
-       @datas
+       puts @datas
      else
        return "Bad Rcon"
      end
