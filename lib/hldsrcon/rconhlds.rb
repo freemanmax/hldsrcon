@@ -53,7 +53,7 @@ class RconHlds
        puts @datas
      else
        @rcon_command_respons = "Bad Rcon"
-       return @rcon_command_respons
+       @rcon_command_respons
      end
   end
 end
