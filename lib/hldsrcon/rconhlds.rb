@@ -46,10 +46,10 @@ class RconHlds
          data.gsub!("\xFF\xFF\xFF\xFFl", "")
          data.gsub!("\x00\x00", "")
          @datas << data
-         if ( @command_paket[0] == "\xFF\xFF\xFF\xFFl\x00\x00" )
+       end
+       if ( @command_paket[0] == "\xFF\xFF\xFF\xFFl\x00\x00" )
            return @datas
            @receve_paket << true
-         end
        end
      else
        return "Bad Rcon"
