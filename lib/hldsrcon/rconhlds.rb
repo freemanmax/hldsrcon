@@ -38,7 +38,7 @@ class RconHlds
        @datas = []
        loop do
          @command_paket = @socket.recvfrom(1400)
-         data = command_paket[0]
+         data = @command_paket[0]
          data.gsub!("\xFF\xFF\xFF\xFFl", "")
          data.gsub!("\n\x00", "")
          @datas.push(data)
