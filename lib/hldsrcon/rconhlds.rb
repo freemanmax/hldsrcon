@@ -38,21 +38,24 @@ class RconHlds
      if ( @rcon_pass_respons == "Good Rcon" )
        @socket.send "\xFF\xFF\xFF\xFF#{@challenge} #{@pass} #{@command}", 0
        @socket.send "\xFF\xFF\xFF\xFF#{@challenge} #{@pass}", 0
-       @receve_paket = false
+       @receve_paket = true
        @datas = ""
-       until @receve_paket == true do
+       while @receve_paket do
          @command_paket = @socket.recvfrom(1400)
          data = @command_paket[0]
-         data.gsub!("\xFF\xFF\xFF\xFFl", "")
-         data.gsub!("\x00\x00", "")
          @datas << data
          if ( @command_paket[0] == "\xFF\xFF\xFF\xFFl\x00\x00" )
-           puts @datas
-           @receve_paket = true
+           rcon_command_respons
+           @receve_paket = false
          end
        end
      else
        return "Bad Rcon"
      end
+  end
+  def rcon_command_respons
+    @datas.gsub!("\xFF\xFF\xFF\xFFl", "")
+    @datas.gsub!("\x00\x00", "")
+    return @datas
   end
 end
